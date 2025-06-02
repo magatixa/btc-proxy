@@ -1,6 +1,5 @@
 from flask import Flask
 import requests
-import json
 
 app = Flask(__name__)
 
@@ -14,7 +13,7 @@ def btc():
         url = "https://api.coinpaprika.com/v1/tickers/btc-bitcoin"
         resposta = requests.get(url)
         data = resposta.json()
-        # Para debug, mostra o JSON completo
-        return "<pre>" + json.dumps(data, indent=2) + "</pre>"
+        valor_btc_usd = data["quotes"]["USD"]["price"]
+        return str(valor_btc_usd)
     except Exception as e:
         return f"erro: {e}"

@@ -13,7 +13,7 @@ def btc():
         url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=brl"
         resposta = requests.get(url)
         data = resposta.json()
-        valor_btc = data["bitcoin"]["brl"]
-        return str(valor_btc)
+        print(data)  # Para log no Render
+        return str(data)  # Retorna o JSON completo
     except Exception as e:
         return f"erro: {e}"

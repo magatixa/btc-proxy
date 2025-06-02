@@ -12,8 +12,8 @@ def btc():
     try:
         url = "https://www.brasilbitcoin.com.br/API/ticker/BTC"
         resposta = requests.get(url)
-        data = resposta.json()
-        valor_btc = data["ticker"]["last"]
-        return str(valor_btc)
+        print("Status code:", resposta.status_code)
+        print("Conteúdo:", resposta.text)
+        return resposta.text  # Mostra o conteúdo real retornado pela API
     except Exception as e:
         return f"erro: {e}"

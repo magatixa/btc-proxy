@@ -5,15 +5,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Servidor proxy CoinGecko online!"
+    return "Servidor proxy Brasil Bitcoin online!"
 
 @app.route("/btc")
 def btc():
     try:
-        url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=brl"
+        url = "https://www.brasilbitcoin.com.br/API/ticker/BTC"
         resposta = requests.get(url)
         data = resposta.json()
-        print(data)  # Para log no Render
-        return str(data)  # Retorna o JSON completo
+        valor_btc = data["ticker"]["last"]
+        return str(valor_btc)
     except Exception as e:
         return f"erro: {e}"

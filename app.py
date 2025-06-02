@@ -5,16 +5,15 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Servidor proxy CoinDesk online!"
+    return "Proxy CoinPaprika ativo"
 
 @app.route("/btc")
 def btc():
     try:
-        url = "https://api.coindesk.com/v1/bpi/currentprice/BRL.json"
-        headers = {"User-Agent": "Mozilla/5.0"}
-        resposta = requests.get(url, headers=headers)
+        url = "https://api.coinpaprika.com/v1/tickers/btc-bitcoin"
+        resposta = requests.get(url)
         data = resposta.json()
-        valor_btc = data["bpi"]["BRL"]["rate_float"]
+        valor_btc = data["quotes"]["BRL"]["price"]
         return str(valor_btc)
     except Exception as e:
         return f"erro: {e}"
